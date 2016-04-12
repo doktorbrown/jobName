@@ -1,5 +1,5 @@
 '''
-Created on Mar 3, 2016
+Created on Apr 11, 2016
 
 @author: tbrown
 '''
@@ -27,11 +27,11 @@ campusGetter = soup.find_all(text = re.compile("^Requestor Notes"))[0].next
 #filamentGetter = soup.find_all(text = re.compile("Filament Usage Actual"))[0].next
 #notesGetter = soup.find_all(text = re.compile("^Campus"))#not yet implemented in form
 today =str(date.today())
-#print today
-#print nameGetter
+#split the name string and then figure out size to determine last position since 1 is not always last name...
 nameSplitter = nameGetter.split()
 #print nameSplitter[0]
-lastName = nameSplitter[1]
+lastNamePlace= len(nameSplitter)
+lastName = nameSplitter[lastNamePlace-1]
 firstName = nameSplitter[0]
 
 #print lastName,",", firstName
