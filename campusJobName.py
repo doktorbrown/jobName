@@ -17,6 +17,7 @@ campus = str()
 fname = "MakerBot Innovation Center.html"
 soup = BeautifulSoup(open(fname), 'html.parser') 
 out = "clipboard.txt"
+log = "log.txt"
 
 #print soup.prettify()
 
@@ -24,7 +25,7 @@ nameGetter = soup.find_all(text = re.compile("^Requestor"))[0].next
 emailGetter = soup.find_all(text = re.compile("^Requestor Email"))[0].next.next.next_element
 campusGetter = soup.find_all(text = re.compile("^Requestor Notes"))[0].next
 #printerGetter = soup.find_all(text = re.compile("^Printer"))[0].next
-#filamentGetter = soup.find_all(text = re.compile("Filament Usage Actual"))[0].next
+filamentGetter = soup.find_all(text = re.compile("Filament Usage Actual"))[0].next
 #notesGetter = soup.find_all(text = re.compile("^Campus"))#not yet implemented in form
 today =str(date.today())
 #split the name string and then figure out size to determine last position since 1 is not always last name...
@@ -40,7 +41,7 @@ firstName = nameSplitter[0]
 #print emailGetter
 #print printerGetter
 #keep additional options out for now in case html is from rest page instead of jobs. once location parsing or printer name is added 
-#print filamentGetter
+print filamentGetter
 #print notesGetter
 #print " "#space the final frontier
 
@@ -73,7 +74,7 @@ for num in range(campusListSize):
 print campus
 print lastName,",", firstName
 print today
-print emailGetter
+print emailGetter, filamentGetter
 
 #open output file for writing results
 f = open(out, 'w')
@@ -81,7 +82,7 @@ f = open(out, 'w')
 #format extracted text for label
 #lineOne = (nameGetter,'\n', emailGetter, '\n', "\n Failing to add a Raft or \n Supports when preparing the \n .makerbot file is the most \n common reason for a failed print. \n Please check: \n makercommons.psu.edu/fail \n for more info.  Consultations \n can be scheduled by emailing  \n makercommons@psu.edu.")
 #for landscape print
-lineOne = (campus, '\n',lastName,",", firstName,'\n', today, " ", emailGetter, '\n', '\n', "Not adding a Raft or Supports when   prepping the .makerbot file is the   most common reason for failed prints. \n Info: makercommons.psu.edu/fail \n Consultation Scheduling: \n makercommons@psu.edu")
+lineOne = (campus, '\n',lastName,",", firstName,'\n', today, " ", emailGetter, " ", filamentGetter,'\n', '\n', "Not adding a Raft or Supports when   prepping the .makerbot file is the   most common reason for failed prints. \n Info: makercommons.psu.edu/fail \n Consultation Scheduling: \n makercommons@psu.edu")
 
 
 f.writelines(lineOne)
@@ -90,3 +91,9 @@ print lineOne
 f.close()
 
 os.system("lpr -o landscape -P DYMO_LabelWriter_450_Turbo clipboard.txt")
+
+#open log file for appending results
+logs = open(log, 'a')
+logs.writelines(lineOne)
+print "log appended"
+logs.close()
