@@ -1,5 +1,5 @@
 '''
-Created on Jun 20, 2016
+Created on Oct 19, 2016
 
 @author: tbrown
 '''
@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup #installation at http://www.crummy.com/software/Be
 
 
 #update with full list, abbreviations, and lower case
-campusList = ['ABINGTON', 'ALTOONA','BEAVER', 'BEHREND', 'BERKS','BRANDYWINE', 'CARLISLE', 'DUBOIS', 'FAYETTE', 'GREAT VALLEY', 'GREATER ALLEGHENY', 'HARRISBURG', 'HAZELTON', 'HERSHEY', 'LEHIGH VALLEY', 'MONT ALTO', 'NEW KENSINGTON', 'SCHUYKILL', 'SHENANGO', 'UNIVERSITY PARK', 'WILKES-BARRE', 'WILLIAMSPORT','WORTHINGTON SCRANTON', 'YORK']
+campusList = ['ABINGTON', 'ALTOONA','BEAVER', 'BEHREND', 'BERKS','BRANDYWINE', 'CARLISLE', 'DICKINSON','DUBOIS', 'ERIE', 'FAYETTE', 'GREAT', 'GREAT VALLEY', 'GREATER', 'GREATER ALLEGHENY', 'HARRISBURG', 'HAZELTON', 'HERSHEY', 'LEHIGH', 'LEHIGH VALLEY', 'MONT', 'MONT ALTO', 'NEW', 'NEW KENSINGTON', 'SCHUYKILL', 'SHENANGO', 'SCRANTON', 'WILKES-BARRE', 'WILLIAMSPORT','WORTHINGTON', 'WORTHINGTON SCRANTON', 'YORK']
 campus = str()
 
 fname = "MakerBot Innovation Center.html"
@@ -57,13 +57,15 @@ except:
 campusGetterUpper = campusGetter.upper()
 #fix that unicode crap
 cc = campusGetterUpper.encode('utf-8')
-#print cc
+# print "cc = ", cc
 
 campusGetterSplitter = cc.upper()
 campusGetterSplitter = cc.split()
 
+# print "CampusGetterSplitter = ", campusGetterSplitter
+
 campusListSize=len(campusList)
-#print campusListSize
+# print "campus list size",campusListSize
 campusGetterSplitterSize=len(campusGetterSplitter)
 #print campusGetterSplitterSize
 
@@ -73,11 +75,35 @@ for num in range(campusListSize):
         b = campusGetterSplitter[num2]
         if a in b:
             campus = b.upper()
-            #print campus
+#             print campus    
+            
         else:
-            #print "no match"
+#             print "no match"
             
             continue
+        
+#campus exception checking 
+# print "campus", campus
+      
+if campus == "ERIE":
+    campus ="BEHREND"
+if campus == "GREAT":
+    campus ="GREAT VALLEY"
+if campus == "GREATER":
+    campus = "GREATER ALLEGHENY"
+if campus == "GREATER":
+    campus = "GREATER ALLEGHENY"
+if campus == "LEHIGH":
+    campus = "LEHIGH VALLEY"
+if campus == "MONT":
+    campus = "MONT ALTO"
+if campus == "NEW":
+    campus = "NEW KENSINGTON"
+if campus == "SCRANTON":
+    campus = "WORTHINGTON SCRANTON"
+if campus == "WORTHINGTON":
+    campus = "WORTHINGTON SCRANTON"
+    
         
 
 print campus
