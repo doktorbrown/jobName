@@ -1,5 +1,5 @@
 '''
-Created on Oct 19, 2016
+Created on Dec 11, 2016
 
 @author: tbrown
 '''
@@ -7,11 +7,12 @@ import os
 import re
 import time
 from datetime import date
+import csv
 from bs4 import BeautifulSoup #installation at http://www.crummy.com/software/BeautifulSoup/     $ pip install beautifulsoup4
 
 
-#update with full list, abbreviations, and lower case
-campusList = ['ABINGTON', 'ALTOONA','BEAVER', 'BEHREND', 'BERKS','BRANDYWINE', 'CARLISLE', 'DICKINSON','DUBOIS', 'ERIE', 'FAYETTE', 'GREAT', 'GREAT VALLEY', 'GREATER', 'GREATER ALLEGHENY', 'HARRISBURG', 'HAZELTON', 'HERSHEY', 'LEHIGH', 'LEHIGH VALLEY', 'MONT', 'MONT ALTO', 'NEW', 'NEW KENSINGTON', 'SCHUYKILL', 'SHENANGO', 'SCRANTON', 'WILKES-BARRE', 'WILLIAMSPORT','WORTHINGTON', 'WORTHINGTON SCRANTON', 'YORK']
+#update with full list, abbreviations, and lower case expanded campus list
+campusList = ['ABINGTON', 'ALTOONA','BEAVER', 'BEHREND', 'BERKS','BRANDYWINE', 'CARLISLE', 'DICKINSON','DUBOIS', 'ERIE', 'FAYETTE', 'GREAT', 'GREAT VALLEY', 'GREATER', 'GREATER ALLEGHENY', 'HARRISBURG', 'HAZELTON', 'HERSHEY', 'LEHIGH', 'LEHIGH VALLEY', 'MONT', 'MONT ALTO', 'NEW', 'NEW KENSINGTON', 'SCHUYLKILL', 'SHENANGO', 'SCRANTON', 'WILKES-BARRE', 'WILLIAMSPORT','WORTHINGTON', 'WORTHINGTON SCRANTON', 'YORK']
 campus = str()
 
 fname = "MakerBot Innovation Center.html"
@@ -103,6 +104,8 @@ if campus == "SCRANTON":
     campus = "WORTHINGTON SCRANTON"
 if campus == "WORTHINGTON":
     campus = "WORTHINGTON SCRANTON"
+if campus == "SCHUYKILL":
+    campus ="SCHUYLKILL"    
     
         
 
@@ -135,3 +138,5 @@ logs.writelines(lineTwo)
 print "log appended"
 print lineTwo
 logs.close()
+
+#logsCommaSeparated.
