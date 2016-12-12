@@ -1,5 +1,5 @@
 '''
-Created on Dec 11, 2016
+Created on Dec 12, 2016
 
 @author: tbrown
 '''
@@ -19,6 +19,7 @@ fname = "MakerBot Innovation Center.html"
 soup = BeautifulSoup(open(fname), 'html.parser') 
 out = "clipboard.txt"
 log = "log.txt"
+csvLogOutput = "3D_label_Logs.csv"
 
 #print soup.prettify()
 
@@ -135,8 +136,13 @@ os.system("lpr -o landscape -P DYMO_LabelWriter_450_Turbo clipboard.txt")
 #open log file for appending results
 logs = open(log, 'a')
 logs.writelines(lineTwo)
-print "log appended"
-print lineTwo
+# print "log appended"
+# print lineTwo
 logs.close()
 
 #logsCommaSeparated.
+row_to_enter = (today, campus, lastName, firstName, emailGetter, filamentGetter,'\n')
+csvLogs = csv.writer(open(csvLogOutput, 'a'))
+csvLogs.writerow(row_to_enter)
+print "log appended"
+print lineTwo
