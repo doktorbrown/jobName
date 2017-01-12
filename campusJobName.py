@@ -1,5 +1,5 @@
 '''
-Created on Dec 12, 2016
+Created on Jan 12, 2017
 
 @author: tbrown
 '''
@@ -26,7 +26,10 @@ csvLogOutput = "3D_label_Logs.csv"
 nameGetter = soup.find_all(text = re.compile("^Requestor"))[0].next
 emailGetter = soup.find_all(text = re.compile("^Requestor Email"))[0].next.next.next_element
 campusGetter = soup.find_all(text = re.compile("^Requestor Notes"))[0].next
-#printerGetter = soup.find_all(text = re.compile("^Printer"))[0].next
+fileNameGetter = soup.find_all(text = re.compile("^File Name"))[0].next
+requestGetter = soup.find_all(text = re.compile("^Request:"))[0].next
+printerGetter = soup.find_all(text = re.compile("^Printer:"))[0].next.next.next_element
+
 #exception handling for uncompleted prints or variations in html
 try:
     filamentGetter = soup.find_all(text = re.compile("Filament Usage Actual"))[0].next
@@ -45,7 +48,10 @@ firstName = nameSplitter[0]
 
 
 #print emailGetter
-#print printerGetter
+print "printerGetter: ",printerGetter
+# print "requestGetter: ", requestGetter
+# print "fileNameGetter: ", fileNameGetter
+
 #keep additional options out for now in case html is from rest page instead of jobs. once location parsing or printer name is added 
 try:
     print filamentGetter
@@ -113,7 +119,7 @@ if campus == "SCHUYKILL":
 print campus
 print lastName,",", firstName
 print today
-print emailGetter, filamentGetter
+print emailGetter, filamentGetter,fileNameGetter,
 
 #open output file for writing results
 f = open(out, 'w')
@@ -121,9 +127,12 @@ f = open(out, 'w')
 #format extracted text for label
 #lineOne = (nameGetter,'\n', emailGetter, '\n', "\n Failing to add a Raft or \n Supports when preparing the \n .makerbot file is the most \n common reason for a failed print. \n Please check: \n makercommons.psu.edu/fail \n for more info.  Consultations \n can be scheduled by emailing  \n makercommons@psu.edu.")
 #for landscape print
-lineOne = (campus, '\n',lastName,",", firstName,'\n', today, " ", emailGetter, " ", filamentGetter,'\n', '\n', "Not adding a Raft or Supports when   prepping the .makerbot file is the   most common reason for failed prints. \n Info: makercommons.psu.edu/fail \n Consultation Scheduling: \n makercommons@psu.edu")
+# lineOne = (campus, '\n',lastName,",", firstName,'\n', today, " ", emailGetter, " ", filamentGetter, " ",fileNameGetter," ", requestGetter,'\n', '\n', "Not adding a Raft or Supports when   prepping the .makerbot file is the   most common reason for failed prints. \n Info: makercommons.psu.edu/fail \n Consultation Scheduling: \n makercommons@psu.edu")
+#shorter msg re: rafts to adjust formatting and fit on one label
+lineOne = (campus, '\n',lastName,",", firstName,'\n', today, " ", emailGetter, " ", filamentGetter, " ",fileNameGetter," ", requestGetter,'\n',  "Consultation Scheduling: \n makercommons@psu.edu")
+
 #strip extra mc label info so it doesn't clutter log
-lineTwo = (today,",",campus,",",lastName,"," ,firstName,",",emailGetter,",",filamentGetter,'\n','\n')
+lineTwo = (today,",",campus,",",lastName,"," ,firstName,",",emailGetter,",",printerGetter,",",filamentGetter," ",fileNameGetter, " ", requestGetter,'\n','\n')
 
 
 f.writelines(lineOne)
@@ -141,7 +150,7 @@ logs.writelines(lineTwo)
 logs.close()
 
 #logsCommaSeparated.
-row_to_enter = (today, campus, lastName, firstName, emailGetter, filamentGetter,'\n')
+row_to_enter = (today, campus, lastName, firstName, emailGetter, filamentGetter, printerGetter, requestGetter, fileNameGetter, '\n')
 csvLogs = csv.writer(open(csvLogOutput, 'a'))
 csvLogs.writerow(row_to_enter)
 print "log appended"
