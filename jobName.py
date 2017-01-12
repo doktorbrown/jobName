@@ -150,7 +150,7 @@ logs.writelines(lineTwo)
 logs.close()
 
 #logsCommaSeparated.
-row_to_enter = (today, campus, lastName, firstName, emailGetter, printerGetter,filamentGetter, requestGetter, fileNameGetter, '\n')
+row_to_enter = (today, campus, lastName, firstName, emailGetter, filamentGetter, printerGetter, requestGetter, fileNameGetter, '\n')
 csvLogs = csv.writer(open(csvLogOutput, 'a'))
 csvLogs.writerow(row_to_enter)
 print "log appended"
