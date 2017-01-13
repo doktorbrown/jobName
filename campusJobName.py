@@ -129,7 +129,7 @@ f = open(out, 'w')
 #for landscape print
 # lineOne = (campus, '\n',lastName,",", firstName,'\n', today, " ", emailGetter, " ", filamentGetter, " ",fileNameGetter," ", requestGetter,'\n', '\n', "Not adding a Raft or Supports when   prepping the .makerbot file is the   most common reason for failed prints. \n Info: makercommons.psu.edu/fail \n Consultation Scheduling: \n makercommons@psu.edu")
 #shorter msg re: rafts to adjust formatting and fit on one label
-lineOne = (campus, '\n',lastName,",", firstName,'\n', today, " ", emailGetter, " ", filamentGetter, " ",fileNameGetter," ", requestGetter,'\n',  "Consultation Scheduling: \n makercommons@psu.edu")
+lineOne = (campus, '\n',lastName,",", firstName,'\n', today, " ", emailGetter, " ", filamentGetter, " ",fileNameGetter," ", requestGetter,'\n',  "Consultation Scheduling: \n makercommons@psu.edu", '\n', " makercommons.psu.edu")
 
 #strip extra mc label info so it doesn't clutter log
 lineTwo = (today,",",campus,",",lastName,"," ,firstName,",",emailGetter,",",printerGetter,",",filamentGetter," ",fileNameGetter, " ", requestGetter,'\n','\n')
