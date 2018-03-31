@@ -65,12 +65,12 @@ except:
 campusGetterUpper = campusGetter.upper()
 #fix that unicode crap
 cc = campusGetterUpper.encode('utf-8')
-print "cc = ", cc
+# print "cc = ", cc
 
 campusGetterSplitter = cc.upper()
 campusGetterSplitter = cc.split()
 
-print "CampusGetterSplitter = ", campusGetterSplitter
+# print "CampusGetterSplitter = ", campusGetterSplitter
 
 campusListSize=len(campusList)
 # print "campus list size",campusListSize
@@ -79,13 +79,13 @@ campusGetterSplitterSize=len(campusGetterSplitter)
 
 for num in range(campusListSize):
     a= campusList[num]
-    print a, "a"
+#     print a, "a"
     for num2 in range(campusGetterSplitterSize):
         b = campusGetterSplitter[num2]
 #         print b, "b"
         if a in b:
             campus = b.upper()
-            print a,campus ,"wtf?!!"   
+#             print a,campus ,"wtf?!!"   
             
         else:
 #             print "no match"
