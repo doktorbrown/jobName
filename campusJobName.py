@@ -1,5 +1,5 @@
 '''
-Created on Jan 12, 2017
+Modified on Mar 31, 2018
 
 @author: tbrown
 '''
@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup #installation at http://www.crummy.com/software/Be
 
 
 #update with full list, abbreviations, and lower case expanded campus list
-campusList = ['ABINGTON', 'ALTOONA','BEAVER', 'BEHREND', 'BERKS','BRANDYWINE', 'CARLISLE', 'DICKINSON','DUBOIS', 'ERIE', 'FAYETTE', 'GREAT', 'GREAT VALLEY', 'GREATER', 'GREATER ALLEGHENY', 'HARRISBURG', 'HAZELTON', 'HERSHEY', 'LEHIGH', 'LEHIGH VALLEY', 'MONT', 'MONT ALTO', 'NEW', 'NEW KENSINGTON', 'SCHUYLKILL', 'SHENANGO', 'SCRANTON', 'WILKES-BARRE', 'WILLIAMSPORT','WORTHINGTON', 'WORTHINGTON SCRANTON', 'YORK']
+campusList = ['ABINGTON', 'ALTOONA','BEAVER', 'BEHREND', 'BERKS','BRANDYWINE', 'CARLISLE', 'DICKINSON','DUBOIS', 'ERIE', 'FAYETTE', 'GREAT', 'GREAT VALLEY', 'GREATER', 'GREATER ALLEGHENY', 'HARRISBURG', 'HAZELTON', 'HERSHEY', 'LEHIGH', 'LEHIGH VALLEY', 'MONT', 'MONT ALTO', 'NEW ', 'NEW KENSINGTON', 'SCHUYLKILL', 'SHENANGO', 'SCRANTON', 'WILKES-BARRE', 'WILLIAMSPORT','WORTHINGTON', 'WORTHINGTON SCRANTON', 'YORK']
 campus = str()
 
 fname = "MakerBot Innovation Center.html"
@@ -65,12 +65,12 @@ except:
 campusGetterUpper = campusGetter.upper()
 #fix that unicode crap
 cc = campusGetterUpper.encode('utf-8')
-# print "cc = ", cc
+print "cc = ", cc
 
 campusGetterSplitter = cc.upper()
 campusGetterSplitter = cc.split()
 
-# print "CampusGetterSplitter = ", campusGetterSplitter
+print "CampusGetterSplitter = ", campusGetterSplitter
 
 campusListSize=len(campusList)
 # print "campus list size",campusListSize
@@ -79,11 +79,13 @@ campusGetterSplitterSize=len(campusGetterSplitter)
 
 for num in range(campusListSize):
     a= campusList[num]
+    print a, "a"
     for num2 in range(campusGetterSplitterSize):
         b = campusGetterSplitter[num2]
+#         print b, "b"
         if a in b:
             campus = b.upper()
-#             print campus    
+            print a,campus ,"wtf?!!"   
             
         else:
 #             print "no match"
